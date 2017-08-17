@@ -197,8 +197,8 @@ extension CAPSPageMenu {
                     if self.menuItems[self.lastPageIndex].titleLabel != nil && self.menuItems[self.currentPageIndex].titleLabel != nil {
                         self.menuItems[self.lastPageIndex].titleLabel!.textColor = self.configuration.unselectedMenuItemLabelColor
                         self.menuItems[self.currentPageIndex].titleLabel!.textColor = self.configuration.selectedMenuItemLabelColor
-                        if(self.currentPageIndex == 2){
-                            self.menuItems[self.currentPageIndex].backgroundColor = UIColor.blue
+                        if let i = self.configuration.indexMenuItemSpecial.index(of: self.currentPageIndex){
+                            self.menuItems[self.currentPageIndex].backgroundColor = self.configuration.selectedMenuItemColorSpecial[i]
                         }else{
                             self.menuItems[self.currentPageIndex].backgroundColor = self.configuration.selectedMenuItemColor
 

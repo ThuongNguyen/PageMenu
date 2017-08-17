@@ -12,6 +12,13 @@ extension CAPSPageMenu {
     func configurePageMenu(options: [CAPSPageMenuOption]) {
         for option in options {
             switch (option) {
+                
+            // add indexspecial
+            case let .indexMenuItemSpecial(value):
+                configuration.indexMenuItemSpecial = value
+            case let .selectedMenuItemColorSpecial(value):
+                configuration.selectedMenuItemColorSpecial = value 
+                
             case let .selectionIndicatorHeight(value):
                 configuration.selectionIndicatorHeight = value
             case let .menuItemSeparatorWidth(value):
@@ -230,12 +237,11 @@ extension CAPSPageMenu {
         if menuItems.count > 0 {
             if menuItems[currentPageIndex].titleLabel != nil {
                 menuItems[currentPageIndex].titleLabel!.textColor = configuration.selectedMenuItemLabelColor
-                if(currentPageIndex == 2){
-                    menuItems[currentPageIndex].backgroundColor = UIColor.blue
-
+                if let i = self.configuration.indexMenuItemSpecial.index(of: self.currentPageIndex){
+                    self.menuItems[self.currentPageIndex].backgroundColor = self.configuration.selectedMenuItemColorSpecial[i]
                 }else{
-                    menuItems[currentPageIndex].backgroundColor = configuration.selectedMenuItemColor
-
+                    self.menuItems[self.currentPageIndex].backgroundColor = self.configuration.selectedMenuItemColor
+                    
                 }
 
             }

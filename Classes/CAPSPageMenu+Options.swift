@@ -32,6 +32,10 @@ public enum CAPSPageMenuOption {
     case menuHeight(CGFloat)
     case selectedMenuItemLabelColor(UIColor)
     case selectedMenuItemColor(UIColor)
+    
+    case indexMenuItemSpecial([Int])
+    case selectedMenuItemColorSpecial([UIColor])
+
     case unselectedMenuItemLabelColor(UIColor)
     case unselectedMenuItemColor(UIColor)
 
