@@ -59,7 +59,7 @@ class MenuItemView: UIView {
         self.titleLabel!.textAlignment = NSTextAlignment.center
         self.titleLabel!.textColor = pageMenu.configuration.unselectedMenuItemLabelColor
         
-        //**************************拡張*************************************
+        //******************************拡張*************************************
         self.titleLabel!.adjustsFontSizeToFitWidth = pageMenu.configuration.titleTextSizeBasedOnMenuItemWidth
         //**************************拡張ここまで*************************************
         

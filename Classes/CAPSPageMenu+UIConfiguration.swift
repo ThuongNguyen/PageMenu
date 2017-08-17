@@ -34,8 +34,12 @@ extension CAPSPageMenu {
                 configuration.menuHeight = value
             case let .selectedMenuItemLabelColor(value):
                 configuration.selectedMenuItemLabelColor = value
+            case let .selectedMenuItemColor(value):
+                configuration.selectedMenuItemColor = value
             case let .unselectedMenuItemLabelColor(value):
                 configuration.unselectedMenuItemLabelColor = value
+            case let .unselectedMenuItemColor(value):
+                configuration.unselectedMenuItemColor = value
             case let .useMenuLikeSegmentedControl(value):
                 configuration.useMenuLikeSegmentedControl = value
             case let .menuItemSeparatorRoundEdges(value):
@@ -226,6 +230,14 @@ extension CAPSPageMenu {
         if menuItems.count > 0 {
             if menuItems[currentPageIndex].titleLabel != nil {
                 menuItems[currentPageIndex].titleLabel!.textColor = configuration.selectedMenuItemLabelColor
+                if(currentPageIndex == 2){
+                    menuItems[currentPageIndex].backgroundColor = UIColor.blue
+
+                }else{
+                    menuItems[currentPageIndex].backgroundColor = configuration.selectedMenuItemColor
+
+                }
+
             }
         }
         

@@ -21,18 +21,18 @@ import UIKit
 
 @objc public protocol CAPSPageMenuDelegate {
     // MARK: - Delegate functions
-
+    
     @objc optional func willMoveToPage(_ controller: UIViewController, index: Int)
     @objc optional func didMoveToPage(_ controller: UIViewController, index: Int)
 }
 
-open class CAPSPageMenu: UIViewController {
-
+ open class CAPSPageMenu: UIViewController {
+    
     //MARK: - Configuration
     var configuration = CAPSPageMenuConfiguration()
     
     // MARK: - Properties
-
+    
     let menuScrollView = UIScrollView()
     let controllerScrollView = UIScrollView()
     var controllerArray : [UIViewController] = []
@@ -43,37 +43,37 @@ open class CAPSPageMenu: UIViewController {
     
     var startingMenuMargin : CGFloat = 0.0
     var menuItemMargin : CGFloat = 0.0
-
+    
     var selectionIndicatorView : UIView = UIView()
-
+    
     public var currentPageIndex : Int = 0
     var lastPageIndex : Int = 0
-
+    
     var currentOrientationIsPortrait : Bool = true
     var pageIndexForOrientationChange : Int = 0
     var didLayoutSubviewsAfterRotation : Bool = false
     var didScrollAlready : Bool = false
-
+    
     var lastControllerScrollViewContentOffset : CGFloat = 0.0
-
+    
     var lastScrollDirection : CAPSPageMenuScrollDirection = .other
     var startingPageForScroll : Int = 0
     var didTapMenuItemToScroll : Bool = false
-
+    
     var pagesAddedDictionary : [Int : Int] = [:]
-
+    
     open weak var delegate : CAPSPageMenuDelegate?
-
+    
     var tapTimer : Timer?
-
+    
     enum CAPSPageMenuScrollDirection : Int {
         case left
         case right
         case other
     }
-
+    
     // MARK: - View life cycle
-
+    
     /**
      Initialize PageMenu with view controllers
      
@@ -104,17 +104,17 @@ open class CAPSPageMenu: UIViewController {
     }
     
     /**
-    Initialize PageMenu with view controllers
-
-    - parameter viewControllers: List of view controllers that must be subclasses of UIViewController
-    - parameter frame: Frame for page menu view
-    - parameter configuration: A configuration instance for page menu
-    */
+     Initialize PageMenu with view controllers
+     
+     - parameter viewControllers: List of view controllers that must be subclasses of UIViewController
+     - parameter frame: Frame for page menu view
+     - parameter configuration: A configuration instance for page menu
+     */
     public init(viewControllers: [UIViewController], frame: CGRect, configuration: CAPSPageMenuConfiguration) {
         super.init(nibName: nil, bundle: nil)
         self.configuration = configuration
         controllerArray = viewControllers
-
+        
         self.view.frame = frame
         
         //Build UI
@@ -154,7 +154,7 @@ open class CAPSPageMenu: UIViewController {
             configureUserInterface()
         }
     }
-
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
@@ -162,7 +162,7 @@ open class CAPSPageMenu: UIViewController {
 
 
 
-extension CAPSPageMenu {    
+extension CAPSPageMenu {
     // MARK: - Handle Selection Indicator
     func moveSelectionIndicator(_ pageIndex: Int) {
         if pageIndex >= 0 && pageIndex < controllerArray.count {
@@ -197,6 +197,13 @@ extension CAPSPageMenu {
                     if self.menuItems[self.lastPageIndex].titleLabel != nil && self.menuItems[self.currentPageIndex].titleLabel != nil {
                         self.menuItems[self.lastPageIndex].titleLabel!.textColor = self.configuration.unselectedMenuItemLabelColor
                         self.menuItems[self.currentPageIndex].titleLabel!.textColor = self.configuration.selectedMenuItemLabelColor
+                        if(self.currentPageIndex == 2){
+                            self.menuItems[self.currentPageIndex].backgroundColor = UIColor.blue
+                        }else{
+                            self.menuItems[self.currentPageIndex].backgroundColor = self.configuration.selectedMenuItemColor
+
+                        }
+                        self.menuItems[self.lastPageIndex].backgroundColor = self.configuration.unselectedMenuItemColor
                     }
                 }
             })
