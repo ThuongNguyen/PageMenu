@@ -168,6 +168,12 @@ extension CAPSPageMenu {
         }
         
         // Configure controller scroll view content size
+        if(controllerArray.count < 2){
+            controllerScrollView.isScrollEnabled = false
+        }else{
+            controllerScrollView.isScrollEnabled = true
+            
+        }
         controllerScrollView.contentSize = CGSize(width: self.view.frame.width * CGFloat(controllerArray.count), height: 0.0)
         
         var index : CGFloat = 0.0

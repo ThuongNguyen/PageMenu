@@ -368,4 +368,37 @@ extension CAPSPageMenu {
             })
         }
     }
+    
+    open func refeshTab(viewControllers:[UIViewController]){
+        self.moveToPage(0)
+        self.currentPageIndex = 0
+        self.lastPageIndex = 0
+        self.totalMenuItemWidthIfDifferentWidths = 0.0
+        self.lastControllerScrollViewContentOffset = 0.0
+        self.startingPageForScroll = 0
+        self.menuItems  = []
+        self.menuItemWidths = []
+        self.pagesAddedDictionary = [:]
+        
+        let views = self.view.subviews
+        for view in views{
+            view.removeFromSuperview()
+        }
+        
+        let subViews = self.menuScrollView.subviews
+        for subview in subViews{
+            subview.removeFromSuperview()
+        }
+        
+        controllerArray = viewControllers
+        setUpUserInterface()
+        
+        
+        if menuScrollView.subviews.count == 0 {
+            self.configureUserInterface()
+            
+        }
+        
+    }
+
 }
